@@ -6,7 +6,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import App from './App.jsx'
 
-document.documentElement.setAttribute("data-bs-theme", "dark");
+// Apply theme immediately before React renders to prevent flash
+const savedTheme = localStorage.getItem('theme');
+// Default to dark if no preference saved
+const initialTheme = savedTheme ? savedTheme : 'dark';
+document.documentElement.setAttribute('data-bs-theme', initialTheme);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
